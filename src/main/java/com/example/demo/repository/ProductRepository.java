@@ -8,10 +8,10 @@ import org.springframework.data.jpa.repository.Query;
 import com.example.demo.modal.Product;
 
 public interface ProductRepository extends   JpaRepository<Product, Long> {
-	@Query(value = "FROM Product WHERE price = (SELECT min(price) FROM Product);",nativeQuery = true)
+	@Query(value = "Select * FROM ProductMaster.product_details WHERE price = (SELECT min(price) FROM ProductMaster.product_details);",nativeQuery = true)
 	public List<Product> Getmin();
 	
 
-	@Query(value = "FROM Product WHERE price = (SELECT Max(price) FROM Product);",nativeQuery = true)
+	@Query(value = "Select * FROM ProductMaster.product_details WHERE price = (SELECT Max(price) FROM ProductMaster.product_details);",nativeQuery = true)
 	public  List<Product> Getmax();
 }
